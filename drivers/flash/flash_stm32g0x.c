@@ -150,6 +150,9 @@ static int erase_page(const struct device *dev, unsigned int offset)
 	tmp &= ~FLASH_CR_PNB_Msk;
 	tmp |= ((page << FLASH_CR_PNB_Pos) & FLASH_CR_PNB_Msk);
 
+	/* Workaround till I find the time to further debug this */
+	k_msleep(1);
+
 	/* Set the STRT bit and write the reg */
 	tmp |= FLASH_CR_STRT;
 	regs->CR = tmp;
